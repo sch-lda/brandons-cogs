@@ -3242,7 +3242,7 @@ class ActivityLogger(commands.Cog):
         elif type(location) is discord.User or type(location) is discord.Member:
             path += ["usernames", "usernames.log"]
         else:
-            return
+            path += ["other.log"]
 
         if subfolder:
             path.insert(-1, str(subfolder))
