@@ -3238,7 +3238,7 @@ class ActivityLogger(commands.Cog):
         rotation = self.cache["rotation"]
         if type(location) is discord.Guild:
             path += [str(location.id), "guild.log"]
-        elif type(location) is discord.TextChannel or type(location) is discord.VoiceChannel:
+        elif type(location) is discord.TextChannel or type(location) is discord.VoiceChannel or type(location) is discord.Thread:
             guildid = str(location.guild.id)
             entry.append("#" + location.name)
             path += [guildid, str(location.id) + ".log"]
