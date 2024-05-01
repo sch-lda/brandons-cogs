@@ -3206,6 +3206,12 @@ class ActivityLogger(commands.Cog):
             guildid = channel.guild.id
         elif isinstance(channel, discord.abc.PrivateChannel):
             guildid = "direct"
+        elif type(channel) is discord.VoiceChannel:
+            guildid = channel.guild.id
+        elif type(channel) is discord.ForumChannel:
+            guildid = channel.guild.id
+        else:
+            guildid = "unknown"
 
         path = os.path.join(path, str(guildid), str(channel.id) + "_attachments")
         filename = str(aid) + "_" + aname
