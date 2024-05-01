@@ -3201,7 +3201,6 @@ class ActivityLogger(commands.Cog):
         url = a.url
         channel = message.channel
         path = str(PATH)
-
         if type(channel) is discord.TextChannel:
             guildid = channel.guild.id
         elif isinstance(channel, discord.abc.PrivateChannel):
@@ -3211,7 +3210,7 @@ class ActivityLogger(commands.Cog):
         elif type(channel) is discord.ForumChannel:
             guildid = channel.guild.id
         else:
-            guildid = "unknown"
+            guildid = channel.guild.id
 
         path = os.path.join(path, str(guildid), str(channel.id) + "_attachments")
         filename = str(aid) + "_" + aname
