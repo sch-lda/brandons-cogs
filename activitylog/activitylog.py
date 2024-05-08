@@ -3282,7 +3282,8 @@ class ActivityLogger(commands.Cog):
             entry = ATTACHMENT_TEMPLATE.format(message, urls)
         else:
             if message.reference:
-                ref_channel = message.guild.get_channel(message.reference.channel_id)
+                if message.guild is not None:
+                    ref_channel = message.guild.get_channel(message.reference.channel_id)
                 ref_message = None
                 if ref_channel:
                     ref_message = await ref_channel.fetch_message(message.reference.message_id)
