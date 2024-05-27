@@ -3405,14 +3405,6 @@ class ActivityLogger(commands.Cog):
             else:
                 entries.append("guild owner changed from {0.owner} (id {0.owner.id}) to {1.owner} (id {1.owner.id})")
 
-        if before.region != after.region:
-            if user:
-                entries.append(
-                    "guild region changed by @{2.name}#{2.discriminator}(id:{2.id}), from {0.region} to {1.region}"
-                )
-            else:
-                entries.append("guild region changed from {0.region} to {1.region}")
-
         if before.name != after.name:
             if user:
                 entries.append(
