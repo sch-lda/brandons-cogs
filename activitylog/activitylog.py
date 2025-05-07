@@ -16,7 +16,7 @@ import asyncio
 import glob
 import io
 import functools
-
+import aiohttp
 from typing import Literal
 
 # plotting
@@ -3316,7 +3316,14 @@ class ActivityLogger(commands.Cog):
                 dl_path = os.path.join(path, filename)
                 if not os.path.exists(dl_path):
                     try:
-                        await message.attachments[i].save(dl_path)
+                        #await message.attachments[i].save(dl_path)
+                        async with aiohttp.ClientSession() as session:
+                            async with session.get(message.attachments[i].url) as resp:
+                                if resp.status == 200:
+                                    data = await resp.read()
+                                    with open(dl_path, 'wb') as f:
+                                        f.write(data)
+                                        
                     except:
                         entry += f" (file: {filename} failed to save)"
 
