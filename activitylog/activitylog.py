@@ -3320,10 +3320,10 @@ class ActivityLogger(commands.Cog):
                         async with aiohttp.ClientSession() as session:
                             async with session.get(message.attachments[i].url) as resp:
                                 if resp.status == 200:
-                                    data = await resp.read()
                                     with open(dl_path, 'wb') as f:
-                                        f.write(data)
-                                        
+                                        async for chunk in resp.content.iter_chunked(1024 * 1024):  # 1MB per chunk
+                                            f.write(chunk)
+
                     except:
                         entry += f" (file: {filename} failed to save)"
 
