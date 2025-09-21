@@ -3285,7 +3285,10 @@ class ActivityLogger(commands.Cog):
                 ref_channel = message.guild.get_channel(message.reference.channel_id)
                 ref_message = None
                 if ref_channel:
-                    ref_message = await ref_channel.fetch_message(message.reference.message_id)
+                    try:
+                        ref_message = await ref_channel.fetch_message(message.reference.message_id)
+                    except discord.NotFound:
+                        pass
                 if ref_message:
                     entry = REPLY_TEMPLATE.format(message, ref_message)
                 else:
