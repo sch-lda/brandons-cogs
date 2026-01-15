@@ -3423,13 +3423,13 @@ class ActivityLogger(commands.Cog):
             else:
                 entries.append('guild name changed from "{0.name}" to "{1.name}"')
 
-        if before.icon_url != after.icon_url:
+        if before.icon.url != after.icon.url:
             if user:
                 entries.append(
-                    "guild icon changed by @{2.name}#{2.discriminator}(id:{2.id}), from {0.icon_url} to {1.icon_url}"
+                    "guild icon changed by @{2.name}#{2.discriminator}(id:{2.id}), from {0.icon.url} to {1.icon.url}"
                 )
             else:
-                entries.append("guild icon changed from {0.icon_url} to {1.icon_url}")
+                entries.append("guild icon changed from {0.icon.url} to {1.icon.url}")
 
         if before.splash != after.splash:
             if user:
